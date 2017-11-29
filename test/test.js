@@ -5,7 +5,8 @@ const express = require("express");
 const app = require("js-core-data-app")();
 const restApi = require("../");
 const api = express();
-api.use(restApi(app.database));
+api.locals.database = app.database;
+restApi(api);
 
 const test = supertest(api);
 

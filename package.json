@@ -9,17 +9,18 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
     "js-core-data-rest": "^0.1.1"
   },
   "devDependencies": {
     "js-core-data-app": "^0.1.0",
     "mocha": "^4.0.1",
+    "express": "^4.16.2",
     "sqlite3": "^3.1.13",
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha ."
   }
 }
