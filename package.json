@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "js-core-data-rest": "^0.1.1"
+    "js-core-data-rest": "^0.1.2"
   },
   "devDependencies": {
     "js-core-data-app": "^0.1.0",
