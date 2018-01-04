@@ -1,21 +1,20 @@
 const assert = require("assert");
 const supertest = require("supertest");
-const express = require("express");
+const path = require("path");
 
-const app = require("nappjs")();
-const restApi = require("../");
-const api = express();
-api.locals.database = app.database;
-restApi(api);
-
-const test = supertest(api);
+const napp = require("nappjs")();
+let test = null;
 
 describe("api", () => {
-  beforeEach(() => {
-    return require("./seed-data")(app.database);
+  before(async () => {
+    napp.addPlugin("test", path.join(__dirname, "../index"));
+    await napp.load();
+    await require("./seed-data")(napp.locals.database);
+    test = supertest(napp.locals.api);
   });
+
   after(() => {
-    return app.database.closeAllConnections();
+    return napp.locals.database.closeAllConnections();
   });
 
   it("should fetch entities", () => {
