@@ -2,7 +2,7 @@ const assert = require("assert");
 const supertest = require("supertest");
 const path = require("path");
 
-const napp = require("nappjs")();
+const napp = require("nappjs").NewNappJS();
 let test = null;
 
 describe("api", () => {
@@ -23,7 +23,6 @@ describe("api", () => {
       .expect(206)
       .expect(res => {
         assert.equal(res.body.length, 1);
-
         let person = res.body[0];
         assert.equal(person.firstname, "John");
         assert.equal(person.lastname, "Doe");
