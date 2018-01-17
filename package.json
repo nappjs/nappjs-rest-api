@@ -1,7 +1,7 @@
 {
   "name": "nappjs-rest-api",
   "description": "Rest api plugin for js-core-data-app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "repository": {
     "type": "git",
