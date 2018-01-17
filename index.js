@@ -52,21 +52,25 @@ var bodyParser = require("body-parser");
 var REST_API_PATH = process.env.REST_API_PATH || "/";
 var NappJSRestAPI = (function (_super) {
     __extends(NappJSRestAPI, _super);
-    function NappJSRestAPI() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function NappJSRestAPI(coredata, api) {
+        var _this = _super.call(this) || this;
+        _this.coredata = coredata;
+        _this.api = api;
+        return _this;
     }
-    NappJSRestAPI.prototype.postRegister = function (napp) {
+    NappJSRestAPI.prototype.load = function (napp) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                assert.ok(napp.locals.database, "database not found in locals");
-                assert.ok(napp.locals.api, "api not found in locals");
-                napp.locals.api.use(REST_API_PATH, bodyParser.json());
-                napp.locals.api.use(REST_API_PATH, CoreDataRest.rest(napp.locals.database));
+                assert.ok(this.coredata.database, "database not found in locals");
+                assert.ok(this.api, "api not found in locals");
+                this.api.app.use(REST_API_PATH, bodyParser.json());
+                this.api.app.use(REST_API_PATH, CoreDataRest.rest(this.coredata.database));
                 return [2];
             });
         });
     };
+    NappJSRestAPI.dependencies = ["nappjs-core-data", "nappjs-api"];
     return NappJSRestAPI;
-}(nappjs_1.NappJSModule));
+}(nappjs_1.NappJSService));
 exports.default = NappJSRestAPI;
 //# sourceMappingURL=index.js.map
